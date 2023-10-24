@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Xml.XPath;
-using WebApi.Models;
+using Entities.Models;
 using WebApi.Repositories;
 
 namespace WebApi.Controllers
