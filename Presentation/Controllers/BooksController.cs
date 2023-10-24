@@ -6,7 +6,7 @@ using Entities.Models;
 using Repositories.Contracts;
 using Services.Contracts;
 
-namespace WebApi.Controllers
+namespace Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

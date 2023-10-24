@@ -31,7 +31,7 @@ namespace Services
         {
             var book = _repositoryManager.Book.GetOneBookById(id, trackChanges);
 
-            if (book != null)
+            if (book == null)
                 throw new Exception($"Book with id:{id} could not found.");
 
             _repositoryManager.Book.DeleteOneBook(book);
