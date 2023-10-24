@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Xml.XPath;
 using Entities.Models;
 using Repositories.Contracts;
+using Services.Contracts;
 
 namespace WebApi.Controllers
 {
@@ -11,11 +12,11 @@ namespace WebApi.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly IRepositoryManager _repositoryManager;
+        private readonly IServiceManager _serviceManager;
 
-        public BooksController(IRepositoryManager repositoryManager)
+        public BooksController(IServiceManager serviceManager)
         {
-            _repositoryManager = repositoryManager;
+            _serviceManager = serviceManager;
         }
 
         [HttpGet]
@@ -23,7 +24,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var books = _repositoryManager.Book.GetAllBooks(false);
+                var books = _serviceManager.BookService.GetAllBooks(false);
                 return Ok(books);
 
             }
@@ -37,7 +38,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var book = _repositoryManager.Book.GetOneBookById(id, false);
+                var book = _serviceManager.BookService.GetOneBookById(id, false);
 
                 if (book is null)
                     return NotFound(); // 404
@@ -58,8 +59,7 @@ namespace WebApi.Controllers
                 if (book is null)
                     return BadRequest(); // 400
 
-                _repositoryManager.Book.CreateOneBook(book);
-                _repositoryManager.Save();
+                _serviceManager.BookService.CreateOneBook(book);
 
                 return StatusCode(201, book); // 201
             }
@@ -76,15 +76,9 @@ namespace WebApi.Controllers
                 if (book is null)
                     return BadRequest(); // 400
 
-                var bookToUpdate = _repositoryManager.Book.GetOneBookById(id, true);
+                _serviceManager.BookService.UpdateOneBook(id, book, true);
 
-                if (bookToUpdate is null)
-                    return NotFound(); // 404
-
-                _repositoryManager.Book.UpdateOneBook(book);
-                _repositoryManager.Save();
-
-                return Ok(bookToUpdate); // 200
+                return NoContent(); // 204
             }
             catch (Exception exception)
             {
@@ -96,18 +90,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var bookToDelete = _repositoryManager.Book.GetOneBookById(id, false);
-
-                if (bookToDelete is null)
-                    return NotFound(new
-                    {
-                        statusCode = 404,
-                        message = $"Book with id {id} not found"
-                    }); // 404
-
-                _repositoryManager.Book.DeleteOneBook(bookToDelete);
-                _repositoryManager.Save();
-
+                _serviceManager.BookService.DeleteOneBook(id, false);
                 return NoContent(); // 204
             }
             catch (Exception exception)
@@ -120,14 +103,13 @@ namespace WebApi.Controllers
         {
             try
             {
-                var bookToUpdate = _repositoryManager.Book.GetOneBookById(id, true);
+                var bookToUpdate = _serviceManager.BookService.GetOneBookById(id, true);
 
                 if (bookToUpdate is null)
                     return NotFound(); // 404
 
                 bookPatch.ApplyTo(bookToUpdate);
-                _repositoryManager.Book.UpdateOneBook(bookToUpdate);
-                _repositoryManager.Save();
+                _serviceManager.BookService.UpdateOneBook(id, bookToUpdate, true);
                 return NoContent(); // 204
             }
             catch (Exception exception)

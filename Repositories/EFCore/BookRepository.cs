@@ -26,7 +26,7 @@ namespace Repositories.EFCore
             => FindAll(trackChanges).OrderBy(b => b.Id);
 
         public Book GetOneBookById(int id, bool trackChanges) 
-            => FindByConditons(b => b.Id == id, trackChanges).SingleOrDefault();
+            => FindByConditons(b => b.Id.Equals(id), trackChanges).SingleOrDefault();
 
     }
 }
