@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Xml.XPath;
 using Entities.Models;
-using WebApi.Repositories;
+using Repositories.EFCore;
 
 namespace WebApi.Controllers
 {
