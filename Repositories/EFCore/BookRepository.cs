@@ -25,8 +25,8 @@ namespace Repositories.EFCore
         public IQueryable<Book> GetAllBooks(bool trackChanges) 
             => FindAll(trackChanges).OrderBy(b => b.Id);
 
-        public IQueryable<Book> GetOneBookById(int id, bool trackChanges) 
-            => FindByConditons(b => b.Id == id, trackChanges);
+        public Book GetOneBookById(int id, bool trackChanges) 
+            => FindByConditons(b => b.Id == id, trackChanges).SingleOrDefault();
 
     }
 }

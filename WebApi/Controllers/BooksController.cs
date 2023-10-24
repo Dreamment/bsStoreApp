@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Xml.XPath;
 using Entities.Models;
-using Repositories.EFCore;
+using Repositories.Contracts;
 
 namespace WebApi.Controllers
 {
@@ -11,18 +11,19 @@ namespace WebApi.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly RepositoryContext repositoryContext;
+        private readonly IRepositoryManager _repositoryManager;
 
-        public BooksController(RepositoryContext context)
+        public BooksController(IRepositoryManager repositoryManager)
         {
-            repositoryContext = context;
+            _repositoryManager = repositoryManager;
         }
+
         [HttpGet]
         public IActionResult GetAllBooks()
         {
             try
             {
-                var books = repositoryContext.Books.ToList();
+                var books = _repositoryManager.Book.GetAllBooks(false);
                 return Ok(books);
 
             }
@@ -36,7 +37,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var book = repositoryContext.Books.Where(b => b.Id.Equals(id)).SingleOrDefault();
+                var book = _repositoryManager.Book.GetOneBookById(id, false);
 
                 if (book is null)
                     return NotFound(); // 404
@@ -57,8 +58,9 @@ namespace WebApi.Controllers
                 if (book is null)
                     return BadRequest(); // 400
 
-                repositoryContext.Books.Add(book);
-                repositoryContext.SaveChanges();
+                _repositoryManager.Book.CreateOneBook(book);
+                _repositoryManager.Save();
+
                 return StatusCode(201, book); // 201
             }
             catch (Exception exception)
@@ -74,14 +76,13 @@ namespace WebApi.Controllers
                 if (book is null)
                     return BadRequest(); // 400
 
-                var bookToUpdate = repositoryContext.Books.Where(b => b.Id.Equals(id)).SingleOrDefault();
+                var bookToUpdate = _repositoryManager.Book.GetOneBookById(id, true);
 
                 if (bookToUpdate is null)
                     return NotFound(); // 404
 
-                bookToUpdate.Title = book.Title;
-                bookToUpdate.Price = book.Price;
-                repositoryContext.SaveChanges();
+                _repositoryManager.Book.UpdateOneBook(book);
+                _repositoryManager.Save();
 
                 return Ok(bookToUpdate); // 200
             }
@@ -95,7 +96,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var bookToDelete = repositoryContext.Books.Where(b => b.Id.Equals(id)).SingleOrDefault();
+                var bookToDelete = _repositoryManager.Book.GetOneBookById(id, false);
 
                 if (bookToDelete is null)
                     return NotFound(new
@@ -104,8 +105,9 @@ namespace WebApi.Controllers
                         message = $"Book with id {id} not found"
                     }); // 404
 
-                repositoryContext.Books.Remove(bookToDelete);
-                repositoryContext.SaveChanges();
+                _repositoryManager.Book.DeleteOneBook(bookToDelete);
+                _repositoryManager.Save();
+
                 return NoContent(); // 204
             }
             catch (Exception exception)
@@ -118,13 +120,14 @@ namespace WebApi.Controllers
         {
             try
             {
-                var bookToUpdate = repositoryContext.Books.Where(b => b.Id.Equals(id)).SingleOrDefault();
+                var bookToUpdate = _repositoryManager.Book.GetOneBookById(id, true);
 
                 if (bookToUpdate is null)
                     return NotFound(); // 404
 
                 bookPatch.ApplyTo(bookToUpdate);
-                repositoryContext.SaveChanges();
+                _repositoryManager.Book.UpdateOneBook(bookToUpdate);
+                _repositoryManager.Save();
                 return NoContent(); // 204
             }
             catch (Exception exception)
