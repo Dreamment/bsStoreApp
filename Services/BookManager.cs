@@ -61,7 +61,7 @@ namespace Services
 
         public IEnumerable<BookDto> GetAllBooks(bool trackChanges)
         {
-            var books = _repositoryManager.Book.GetAllBooks(trackChanges);
+            var books = _repositoryManager.Book.GetAllBooksAsync(trackChanges);
             return _mapper.Map<IEnumerable<BookDto>>(books);
         }
 
