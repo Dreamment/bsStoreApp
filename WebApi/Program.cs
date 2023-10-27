@@ -12,9 +12,8 @@ builder.Services.AddControllers(config =>
 {
     config.RespectBrowserAcceptHeader = true;
     config.ReturnHttpNotAcceptable = true;
-})
-    .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
-    .AddNewtonsoftJson();
+}).AddXmlDataContractSerializerFormatters()
+.AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly).AddNewtonsoftJson();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -36,7 +35,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-if(app.Environment.IsProduction())
+if (app.Environment.IsProduction())
 {
     app.UseHsts();
 }
