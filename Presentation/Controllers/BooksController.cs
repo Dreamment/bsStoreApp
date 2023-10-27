@@ -6,6 +6,7 @@ using Entities.Models;
 using Repositories.Contracts;
 using Services.Contracts;
 using Entities.Exceptions;
+using Entities.DataTransferObjects;
 
 namespace Presentation.Controllers
 {
@@ -44,7 +45,7 @@ namespace Presentation.Controllers
             return StatusCode(201, book); // 201
         }
         [HttpPut("{id:int}")]
-        public IActionResult UpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] Book book)
+        public IActionResult UpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] BookDtoForUpdate book)
         {
             if (book is null)
                 return BadRequest(); // 400
@@ -66,7 +67,9 @@ namespace Presentation.Controllers
             var bookToUpdate = _serviceManager.BookService.GetOneBookById(id, true);
 
             bookPatch.ApplyTo(bookToUpdate);
-            _serviceManager.BookService.UpdateOneBook(id, bookToUpdate, true);
+            _serviceManager.BookService.UpdateOneBook(id, 
+                new BookDtoForUpdate(bookToUpdate.Id, bookToUpdate.Title, bookToUpdate.Price),
+                true);
             return NoContent(); // 204
         }
     }
