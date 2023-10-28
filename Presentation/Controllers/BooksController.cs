@@ -11,6 +11,7 @@ using Presentation.ActionFilters;
 
 namespace Presentation.Controllers
 {
+    [ServiceFilter(typeof(LogFilterAttribute))]
     [Route("api/[controller]")]
     [ApiController]
     public class BooksController : ControllerBase
