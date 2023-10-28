@@ -7,6 +7,7 @@ using Repositories.Contracts;
 using Services.Contracts;
 using Entities.Exceptions;
 using Entities.DataTransferObjects;
+using Presentation.ActionFilters;
 
 namespace Presentation.Controllers
 {
@@ -34,30 +35,18 @@ namespace Presentation.Controllers
 
             return Ok(book); // 200
         }
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [HttpPost]
         public async Task<IActionResult> CreateOneBookAsync([FromBody] BookDtoForInsertion bookDto)
         {
-            if (bookDto is null)
-                return BadRequest(); // 400
-
-            if (!ModelState.IsValid)
-                return UnprocessableEntity(ModelState); // 422
-
             var book = await _serviceManager.BookService.CreateOneBookAsync(bookDto);
-
             return StatusCode(201, book); // 201
         }
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateOneBookAsync([FromRoute(Name = "id")] int id, [FromBody] BookDtoForUpdate book)
         {
-            if (book is null)
-                return BadRequest(); // 400
-
-            if(!ModelState.IsValid)
-                return UnprocessableEntity(ModelState); // 422
-
             await _serviceManager.BookService.UpdateOneBookAsync(id, book, false);
-
             return NoContent(); // 204
         }
         [HttpDelete("{id:int}")]
