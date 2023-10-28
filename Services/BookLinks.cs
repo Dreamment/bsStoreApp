@@ -8,12 +8,12 @@ using Services.Contracts;
 
 namespace Services
 {
-    public class BooksLinks : IBookLinks
+    public class BookLinks : IBookLinks
     {
         private readonly LinkGenerator _linkGenerator;
         private readonly IDataShaper<BookDto> _dataShaper;
 
-        public BooksLinks(LinkGenerator linkGenerator, IDataShaper<BookDto> dataShaper)
+        public BookLinks(LinkGenerator linkGenerator, IDataShaper<BookDto> dataShaper)
         {
             _linkGenerator = linkGenerator;
             _dataShaper = dataShaper;
