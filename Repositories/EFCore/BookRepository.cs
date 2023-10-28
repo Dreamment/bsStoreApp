@@ -24,9 +24,11 @@ namespace Repositories.EFCore
         public void UpdateOneBook(Book book) 
             => Update(book);
 
-        public async Task<IEnumerable<Book>> GetAllBooksAsync(BookParamaters bookParamaters, bool trackChanges) 
-            => await FindAll(trackChanges).OrderBy(b => b.Id).Skip((bookParamaters.PageNumber-1)*bookParamaters.PageSize)
-            .Take(bookParamaters.PageSize).ToListAsync();
+        public async Task<PagedList<Book>> GetAllBooksAsync(BookParamaters bookParamaters, bool trackChanges)
+        {
+            var books =await FindAll(trackChanges).OrderBy(b => b.Id).ToListAsync();
+            return PagedList<Book>.ToPagedList(books, bookParamaters.PageNumber, bookParamaters.PageSize);
+        }
 
         public async Task<Book> GetOneBookByIdAsync(int id, bool trackChanges) 
             => await FindByConditons(b => b.Id.Equals(id), trackChanges).SingleOrDefaultAsync();
