@@ -8,6 +8,7 @@ using Services.Contracts;
 using Entities.Exceptions;
 using Entities.DataTransferObjects;
 using Presentation.ActionFilters;
+using Entities.RequestFeatures;
 
 namespace Presentation.Controllers
 {
@@ -24,9 +25,9 @@ namespace Presentation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllBooksAsync()
+        public async Task<IActionResult> GetAllBooksAsync([FromQuery] BookParamaters bookParamaters)
         {
-            var books = await _serviceManager.BookService.GetAllBooksAsync(false);
+            var books = await _serviceManager.BookService.GetAllBooksAsync(bookParamaters, false);
             return Ok(books);
         }
         [HttpGet("{id:int}")]
@@ -53,26 +54,26 @@ namespace Presentation.Controllers
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteOneBookAsync([FromRoute(Name = "id")] int id)
         {
-            
+
             await _serviceManager.BookService.DeleteOneBookAsync(id, false);
             return NoContent(); // 204
         }
         [HttpPatch("{id:int}")]
-        public async Task<IActionResult> PatchOneBookAsync([FromRoute(Name = "id")] int id, 
+        public async Task<IActionResult> PatchOneBookAsync([FromRoute(Name = "id")] int id,
             [FromBody] JsonPatchDocument<BookDtoForUpdate> bookPatch)
         {
-            if(bookPatch is null)
+            if (bookPatch is null)
                 return BadRequest(); // 400
 
             var result = await _serviceManager.BookService.GetOneBookForPatchAsync(id, false);
 
             TryValidateModel(result.bookDtoForUpdate);
 
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState); // 422
 
             await _serviceManager.BookService.SaveChangesForPatchAsync(result.bookDtoForUpdate, result.book);
-            
+
 
             return NoContent(); // 204
         }

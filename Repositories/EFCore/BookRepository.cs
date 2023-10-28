@@ -1,4 +1,5 @@
 ﻿using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Contracts;
 using System;
@@ -23,8 +24,9 @@ namespace Repositories.EFCore
         public void UpdateOneBook(Book book) 
             => Update(book);
 
-        public async Task<IEnumerable<Book>> GetAllBooksAsync(bool trackChanges) 
-            => await FindAll(trackChanges).OrderBy(b => b.Id).ToListAsync();
+        public async Task<IEnumerable<Book>> GetAllBooksAsync(BookParamaters bookParamaters, bool trackChanges) 
+            => await FindAll(trackChanges).OrderBy(b => b.Id).Skip((bookParamaters.PageNumber-1)*bookParamaters.PageSize)
+            .Take(bookParamaters.PageSize).ToListAsync();
 
         public async Task<Book> GetOneBookByIdAsync(int id, bool trackChanges) 
             => await FindByConditons(b => b.Id.Equals(id), trackChanges).SingleOrDefaultAsync();

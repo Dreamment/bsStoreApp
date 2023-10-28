@@ -2,6 +2,7 @@
 using Entities.DataTransferObjects;
 using Entities.Exceptions;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Repositories.Contracts;
 using Services.Contracts;
 using System;
@@ -49,9 +50,9 @@ namespace Services
             await _repositoryManager.SaveAsync();
         }
 
-        public async Task<IEnumerable<BookDto>> GetAllBooksAsync(bool trackChanges)
+        public async Task<IEnumerable<BookDto>> GetAllBooksAsync(BookParamaters bookParamaters, bool trackChanges)
         {
-            var books = await _repositoryManager.Book.GetAllBooksAsync(trackChanges);
+            var books = await _repositoryManager.Book.GetAllBooksAsync(bookParamaters, trackChanges);
             return _mapper.Map<IEnumerable<BookDto>>(books);
         }
 
