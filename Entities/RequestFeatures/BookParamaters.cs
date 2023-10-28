@@ -6,5 +6,12 @@
         public uint MaxPrice { get; set; } = 1000;
         public bool ValidPriceRange => MaxPrice > MinPrice;
         public String? SearchTerm { get; set; }
+
+        public BookParamaters()
+        {
+            OrderBy = "id";
+            PageSize = 50;
+            PageNumber = 1;
+        }
     }
 }
