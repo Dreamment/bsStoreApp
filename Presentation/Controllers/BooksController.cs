@@ -10,6 +10,7 @@ using Entities.DataTransferObjects;
 using Presentation.ActionFilters;
 using Entities.RequestFeatures;
 using System.Text.Json;
+using Entities.LinkModels;
 
 namespace Presentation.Controllers
 {
@@ -29,9 +30,15 @@ namespace Presentation.Controllers
         [ServiceFilter(typeof(ValidatorMediaTypeAttribute))]
         public async Task<IActionResult> GetAllBooksAsync([FromQuery] BookParameters bookParamaters)
         {
-            var pagedResult = await _serviceManager.BookService.GetAllBooksAsync(bookParamaters, false);
-            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
-            return Ok(pagedResult.books);
+            var linkParamaters = new LinkParameters()
+            {
+                BookParameters = bookParamaters,
+                HttpContext = HttpContext
+            };
+
+            var result = await _serviceManager.BookService.GetAllBooksAsync(linkParamaters, false);
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(result.metaData));
+            return result.linkResponse.HasLinks ? Ok(result.linkResponse.LinkedEntities) : Ok(result.linkResponse.ShapedEntities);
         }
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetOneBooksAsync([FromRoute(Name = "id")] int id)
