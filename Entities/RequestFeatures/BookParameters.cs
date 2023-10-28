@@ -1,13 +1,13 @@
 ﻿namespace Entities.RequestFeatures
 {
-    public class BookParamaters : RequestParameters
+    public class BookParameters : RequestParameters
 	{
         public uint MinPrice { get; set; }
         public uint MaxPrice { get; set; } = 1000;
         public bool ValidPriceRange => MaxPrice > MinPrice;
         public String? SearchTerm { get; set; }
 
-        public BookParamaters()
+        public BookParameters()
         {
             OrderBy = "id";
             PageSize = 50;
