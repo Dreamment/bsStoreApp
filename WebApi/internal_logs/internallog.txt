@@ -198,3 +198,31 @@
 2023-10-28 15:42:24.2540 Info Configuration initialized.
 2023-10-28 15:43:06.0296 Info AppDomain Shutting down. LogFactory closing...
 2023-10-28 15:43:06.0374 Info LogFactory has been closed.
+2023-10-28 16:00:59.2675 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-28 16:00:59.2894 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.5.2160. Product version: 5.2.5+7c014325443d65541200b698a50b9dd4ec30c7f0. GlobalAssemblyCache: False
+2023-10-28 16:00:59.3032 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\emre_\Desktop\C# Denemeler\ASP.NET CORE WEB API\basics\bsStoreApp\WebApi\nlog.config
+2023-10-28 16:00:59.3148 Info Configuration initialized.
+2023-10-28 16:07:13.9399 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-28 16:07:13.9681 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.5.2160. Product version: 5.2.5+7c014325443d65541200b698a50b9dd4ec30c7f0. GlobalAssemblyCache: False
+2023-10-28 16:07:13.9833 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\emre_\Desktop\C# Denemeler\ASP.NET CORE WEB API\basics\bsStoreApp\WebApi\nlog.config
+2023-10-28 16:07:13.9971 Info Configuration initialized.
+2023-10-28 16:07:23.2224 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-28 16:07:23.2447 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.5.2160. Product version: 5.2.5+7c014325443d65541200b698a50b9dd4ec30c7f0. GlobalAssemblyCache: False
+2023-10-28 16:07:23.2578 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\emre_\Desktop\C# Denemeler\ASP.NET CORE WEB API\basics\bsStoreApp\WebApi\nlog.config
+2023-10-28 16:07:23.2718 Info Configuration initialized.
+2023-10-28 16:07:30.1480 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-28 16:07:30.1685 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.5.2160. Product version: 5.2.5+7c014325443d65541200b698a50b9dd4ec30c7f0. GlobalAssemblyCache: False
+2023-10-28 16:07:30.1836 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\emre_\Desktop\C# Denemeler\ASP.NET CORE WEB API\basics\bsStoreApp\WebApi\nlog.config
+2023-10-28 16:07:30.1951 Info Configuration initialized.
+2023-10-28 16:10:42.9767 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-28 16:10:42.9893 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.5.2160. Product version: 5.2.5+7c014325443d65541200b698a50b9dd4ec30c7f0. GlobalAssemblyCache: False
+2023-10-28 16:10:42.9893 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\emre_\Desktop\C# Denemeler\ASP.NET CORE WEB API\basics\bsStoreApp\WebApi\nlog.config
+2023-10-28 16:10:43.0071 Info Configuration initialized.
+2023-10-28 16:10:54.9725 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-28 16:10:54.9934 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.5.2160. Product version: 5.2.5+7c014325443d65541200b698a50b9dd4ec30c7f0. GlobalAssemblyCache: False
+2023-10-28 16:10:55.0064 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\emre_\Desktop\C# Denemeler\ASP.NET CORE WEB API\basics\bsStoreApp\WebApi\nlog.config
+2023-10-28 16:10:55.0173 Info Configuration initialized.
+2023-10-28 16:12:16.4941 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-28 16:12:16.5174 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.5.2160. Product version: 5.2.5+7c014325443d65541200b698a50b9dd4ec30c7f0. GlobalAssemblyCache: False
+2023-10-28 16:12:16.5174 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\emre_\Desktop\C# Denemeler\ASP.NET CORE WEB API\basics\bsStoreApp\WebApi\nlog.config
+2023-10-28 16:12:16.5451 Info Configuration initialized.
