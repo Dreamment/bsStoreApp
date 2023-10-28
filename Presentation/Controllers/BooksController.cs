@@ -8,6 +8,8 @@ using Services.Contracts;
 using Entities.Exceptions;
 using Entities.DataTransferObjects;
 using Presentation.ActionFilters;
+using Entities.RequestFeatures;
+using System.Text.Json;
 
 namespace Presentation.Controllers
 {
@@ -24,10 +26,11 @@ namespace Presentation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllBooksAsync()
+        public async Task<IActionResult> GetAllBooksAsync([FromQuery] BookParamaters bookParamaters)
         {
-            var books = await _serviceManager.BookService.GetAllBooksAsync(false);
-            return Ok(books);
+            var pagedResult = await _serviceManager.BookService.GetAllBooksAsync(bookParamaters, false);
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
+            return Ok(pagedResult.books);
         }
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetOneBooksAsync([FromRoute(Name = "id")] int id)
@@ -53,26 +56,26 @@ namespace Presentation.Controllers
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteOneBookAsync([FromRoute(Name = "id")] int id)
         {
-            
+
             await _serviceManager.BookService.DeleteOneBookAsync(id, false);
             return NoContent(); // 204
         }
         [HttpPatch("{id:int}")]
-        public async Task<IActionResult> PatchOneBookAsync([FromRoute(Name = "id")] int id, 
+        public async Task<IActionResult> PatchOneBookAsync([FromRoute(Name = "id")] int id,
             [FromBody] JsonPatchDocument<BookDtoForUpdate> bookPatch)
         {
-            if(bookPatch is null)
+            if (bookPatch is null)
                 return BadRequest(); // 400
 
             var result = await _serviceManager.BookService.GetOneBookForPatchAsync(id, false);
 
             TryValidateModel(result.bookDtoForUpdate);
 
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState); // 422
 
             await _serviceManager.BookService.SaveChangesForPatchAsync(result.bookDtoForUpdate, result.book);
-            
+
 
             return NoContent(); // 204
         }
