@@ -25,7 +25,7 @@ namespace Repositories.EFCore
         public void UpdateOneBook(Book book) 
             => Update(book);
 
-        public async Task<PagedList<Book>> GetAllBooksAsync(BookParamaters bookParamaters, bool trackChanges)
+        public async Task<PagedList<Book>> GetAllBooksAsync(BookParameters bookParamaters, bool trackChanges)
         {
             var books =await FindAll(trackChanges).FilterBooks(bookParamaters.MinPrice, bookParamaters.MaxPrice)
                 .Search(bookParamaters.SearchTerm).Sort(bookParamaters.OrderBy).ToListAsync();

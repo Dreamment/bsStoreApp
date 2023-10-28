@@ -53,7 +53,7 @@ namespace Services
             await _repositoryManager.SaveAsync();
         }
 
-        public async Task<(IEnumerable<ExpandoObject> books, MetaData metaData)> GetAllBooksAsync(BookParamaters bookParamaters, bool trackChanges)
+        public async Task<(IEnumerable<ExpandoObject> books, MetaData metaData)> GetAllBooksAsync(BookParameters bookParamaters, bool trackChanges)
         {
             if (!bookParamaters.ValidPriceRange)
                 throw new PriceOutofRangeBadRequestException();

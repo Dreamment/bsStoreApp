@@ -27,7 +27,7 @@ namespace Presentation.Controllers
 
         [HttpGet]
         [ServiceFilter(typeof(ValidatorMediaTypeAttribute))]
-        public async Task<IActionResult> GetAllBooksAsync([FromQuery] BookParamaters bookParamaters)
+        public async Task<IActionResult> GetAllBooksAsync([FromQuery] BookParameters bookParamaters)
         {
             var pagedResult = await _serviceManager.BookService.GetAllBooksAsync(bookParamaters, false);
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
