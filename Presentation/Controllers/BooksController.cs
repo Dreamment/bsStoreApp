@@ -16,7 +16,7 @@ namespace Presentation.Controllers
 {
     [ApiVersion("1.0")]
     [ServiceFilter(typeof(LogFilterAttribute))]
-    [Route("api/{v:apiversion}/books")]
+    [Route("api/books")]
     [ApiController]
     public class BooksController : ControllerBase
     {
