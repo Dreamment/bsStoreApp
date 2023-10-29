@@ -572,3 +572,19 @@
 2023-10-29 16:53:03.3442 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.5.2160. Product version: 5.2.5+7c014325443d65541200b698a50b9dd4ec30c7f0. GlobalAssemblyCache: False
 2023-10-29 16:53:03.3614 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\emre_\Desktop\C# Denemeler\ASP.NET CORE WEB API\basics\bsStoreApp\WebApi\nlog.config
 2023-10-29 16:53:03.3786 Info Configuration initialized.
+2023-10-29 16:55:34.2686 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-29 16:55:34.3139 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.5.2160. Product version: 5.2.5+7c014325443d65541200b698a50b9dd4ec30c7f0. GlobalAssemblyCache: False
+2023-10-29 16:55:34.3276 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\emre_\Desktop\C# Denemeler\ASP.NET CORE WEB API\basics\bsStoreApp\WebApi\nlog.config
+2023-10-29 16:55:34.3276 Info Configuration initialized.
+2023-10-29 16:58:31.1516 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-29 16:58:31.1732 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.5.2160. Product version: 5.2.5+7c014325443d65541200b698a50b9dd4ec30c7f0. GlobalAssemblyCache: False
+2023-10-29 16:58:31.1862 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\emre_\Desktop\C# Denemeler\ASP.NET CORE WEB API\basics\bsStoreApp\WebApi\nlog.config
+2023-10-29 16:58:31.1862 Info Configuration initialized.
+2023-10-29 17:03:00.8725 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-29 17:03:00.8965 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.5.2160. Product version: 5.2.5+7c014325443d65541200b698a50b9dd4ec30c7f0. GlobalAssemblyCache: False
+2023-10-29 17:03:00.9094 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\emre_\Desktop\C# Denemeler\ASP.NET CORE WEB API\basics\bsStoreApp\WebApi\nlog.config
+2023-10-29 17:03:00.9204 Info Configuration initialized.
+2023-10-29 17:05:48.1827 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-29 17:05:48.2038 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.5.2160. Product version: 5.2.5+7c014325443d65541200b698a50b9dd4ec30c7f0. GlobalAssemblyCache: False
+2023-10-29 17:05:48.2172 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\emre_\Desktop\C# Denemeler\ASP.NET CORE WEB API\basics\bsStoreApp\WebApi\nlog.config
+2023-10-29 17:05:48.2172 Info Configuration initialized.
