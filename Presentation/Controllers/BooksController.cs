@@ -12,6 +12,7 @@ using Entities.RequestFeatures;
 using System.Text.Json;
 using Entities.LinkModels;
 using Marvin.Cache.Headers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Presentation.Controllers
 {
@@ -30,6 +31,7 @@ namespace Presentation.Controllers
             _serviceManager = serviceManager;
         }
 
+        [Authorize]
         [HttpHead]
         [HttpGet(Name = "GetAllBooksAsync")]
         [ServiceFilter(typeof(ValidatorMediaTypeAttribute))]
@@ -45,6 +47,8 @@ namespace Presentation.Controllers
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(result.metaData));
             return result.linkResponse.HasLinks ? Ok(result.linkResponse.LinkedEntities) : Ok(result.linkResponse.ShapedEntities);
         }
+
+        [Authorize]
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetOneBooksAsync([FromRoute(Name = "id")] int id)
         {
@@ -52,6 +56,8 @@ namespace Presentation.Controllers
 
             return Ok(book); // 200
         }
+
+        [Authorize(Roles = "Editor, Admin")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [HttpPost(Name = "CreateOneBookAsync")]
         public async Task<IActionResult> CreateOneBookAsync([FromBody] BookDtoForInsertion bookDto)
@@ -59,6 +65,8 @@ namespace Presentation.Controllers
             var book = await _serviceManager.BookService.CreateOneBookAsync(bookDto);
             return StatusCode(201, book); // 201
         }
+
+        [Authorize(Roles = "Editor, Admin")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateOneBookAsync([FromRoute(Name = "id")] int id, [FromBody] BookDtoForUpdate book)
@@ -66,6 +74,8 @@ namespace Presentation.Controllers
             await _serviceManager.BookService.UpdateOneBookAsync(id, book, false);
             return NoContent(); // 204
         }
+
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteOneBookAsync([FromRoute(Name = "id")] int id)
         {
@@ -73,6 +83,8 @@ namespace Presentation.Controllers
             await _serviceManager.BookService.DeleteOneBookAsync(id, false);
             return NoContent(); // 204
         }
+
+        [Authorize(Roles = "Editor, Admin")]
         [HttpPatch("{id:int}")]
         public async Task<IActionResult> PatchOneBookAsync([FromRoute(Name = "id")] int id,
             [FromBody] JsonPatchDocument<BookDtoForUpdate> bookPatch)
@@ -92,6 +104,8 @@ namespace Presentation.Controllers
 
             return NoContent(); // 204
         }
+
+        [Authorize]
         [HttpOptions]
         public IActionResult GetBooksOptions()
         {
