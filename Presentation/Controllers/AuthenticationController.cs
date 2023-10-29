@@ -21,7 +21,7 @@ namespace Presentation.Controllers
             _service = service;
         }
 
-        [HttpPost("register")]
+        [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDto userForRegistration)
         {
