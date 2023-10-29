@@ -650,3 +650,13 @@
 2023-10-29 18:59:07.0974 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.5.2160. Product version: 5.2.5+7c014325443d65541200b698a50b9dd4ec30c7f0. GlobalAssemblyCache: False
 2023-10-29 18:59:07.1114 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\emre_\Desktop\C# Denemeler\ASP.NET CORE WEB API\basics\bsStoreApp\WebApi\nlog.config
 2023-10-29 18:59:07.1259 Info Configuration initialized.
+2023-10-29 19:00:05.5397 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-29 19:00:05.5525 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.5.2160. Product version: 5.2.5+7c014325443d65541200b698a50b9dd4ec30c7f0. GlobalAssemblyCache: False
+2023-10-29 19:00:05.5656 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\emre_\Desktop\C# Denemeler\ASP.NET CORE WEB API\basics\bsStoreApp\WebApi\nlog.config
+2023-10-29 19:00:05.5890 Info Configuration initialized.
+2023-10-29 19:02:46.5663 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-29 19:02:46.5883 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.5.2160. Product version: 5.2.5+7c014325443d65541200b698a50b9dd4ec30c7f0. GlobalAssemblyCache: False
+2023-10-29 19:02:46.6010 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\emre_\Desktop\C# Denemeler\ASP.NET CORE WEB API\basics\bsStoreApp\WebApi\nlog.config
+2023-10-29 19:02:46.6130 Info Configuration initialized.
+2023-10-29 19:03:34.3351 Info AppDomain Shutting down. LogFactory closing...
+2023-10-29 19:03:34.3491 Info LogFactory has been closed.
