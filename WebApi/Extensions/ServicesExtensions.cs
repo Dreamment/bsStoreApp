@@ -1,4 +1,5 @@
 ﻿using Entities.DataTransferObjects;
+using Marvin.Cache.Headers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.Versioning;
@@ -15,9 +16,9 @@ namespace WebApi.Extensions
 {
     public static class ServicesExtensions
     {
-        public static void ConfigureSqlContext(this IServiceCollection services, 
-            IConfiguration configuration) => 
-            services.AddDbContext<RepositoryContext>(options => 
+        public static void ConfigureSqlContext(this IServiceCollection services,
+            IConfiguration configuration) =>
+            services.AddDbContext<RepositoryContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("sqlConnection")));
 
         public static void ConfigureRepositoryManager(this IServiceCollection services) =>
@@ -36,7 +37,7 @@ namespace WebApi.Extensions
             services.AddScoped<ValidatorMediaTypeAttribute>();
         }
 
-        public static void ConfigureCors(this IServiceCollection services) => 
+        public static void ConfigureCors(this IServiceCollection services) =>
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", builder =>
@@ -87,5 +88,16 @@ namespace WebApi.Extensions
 
         public static void ConfigureResponseCaching(this IServiceCollection services) =>
             services.AddResponseCaching();
+
+        public static void ConfigureHttpCacheHeaders(this IServiceCollection services) => services.AddHttpCacheHeaders(expirationOpt =>
+        {
+            expirationOpt.MaxAge = 90;
+            expirationOpt.CacheLocation = CacheLocation.Public;
+        },
+        valdationOpt =>
+        {
+            valdationOpt.MustRevalidate = true;
+        }
+        );
     }
 }
