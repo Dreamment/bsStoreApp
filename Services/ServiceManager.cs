@@ -24,7 +24,7 @@ namespace Services
             new BookManager(repositoryManager, logger, mapper, bookLinks));
 
             _authenticationService = new Lazy<IAuthenticationService>(() =>
-            new AuthenticationService(logger, mapper, userManager, configuration));
+            new AuthenticationManager(logger, mapper, userManager, configuration));
         }
         public IBookService BookService => _bookService.Value;
 
