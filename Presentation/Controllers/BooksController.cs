@@ -11,6 +11,7 @@ using Presentation.ActionFilters;
 using Entities.RequestFeatures;
 using System.Text.Json;
 using Entities.LinkModels;
+using Marvin.Cache.Headers;
 
 namespace Presentation.Controllers
 {
@@ -18,6 +19,8 @@ namespace Presentation.Controllers
     [ServiceFilter(typeof(LogFilterAttribute))]
     [Route("api/books")]
     [ApiController]
+    //[ResponseCache(CacheProfileName = "5mins")]
+    //[HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 80)]
     public class BooksController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
