@@ -12,6 +12,7 @@ using Entities.RequestFeatures;
 using System.Text.Json;
 using Entities.LinkModels;
 using Marvin.Cache.Headers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Presentation.Controllers
 {
@@ -30,6 +31,7 @@ namespace Presentation.Controllers
             _serviceManager = serviceManager;
         }
 
+        [Authorize]
         [HttpHead]
         [HttpGet(Name = "GetAllBooksAsync")]
         [ServiceFilter(typeof(ValidatorMediaTypeAttribute))]
