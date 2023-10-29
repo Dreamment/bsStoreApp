@@ -84,5 +84,8 @@ namespace WebApi.Extensions
                 opt.Conventions.Controller<BooksController>().HasApiVersion(new ApiVersion(1, 0));
                 opt.Conventions.Controller<BooksV2Controller>().HasDeprecatedApiVersion(new ApiVersion(2, 0));
             });
+
+        public static void ConfigureResponseCaching(this IServiceCollection services) =>
+            services.AddResponseCaching();
     }
 }
