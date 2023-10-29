@@ -11,14 +11,17 @@ namespace Repositories.EFCore
     {
         private readonly RepositoryContext _repositoryContext;
         private readonly Lazy<IBookRepository> _bookRepository;
+        private readonly Lazy<IUserRepository> _userRepository;
 
         public RepositoryManager(RepositoryContext repositoryContext)
         {
             _repositoryContext = repositoryContext;
             _bookRepository = new Lazy<IBookRepository>(() => new BookRepository(_repositoryContext));
+            _userRepository = new Lazy<IUserRepository>(() => new UserRepository(_repositoryContext));
         }
 
         public IBookRepository Book => _bookRepository.Value;
+        public IUserRepository User => _userRepository.Value;
         public async Task SaveAsync() => 
             await _repositoryContext.SaveChangesAsync();
     }
