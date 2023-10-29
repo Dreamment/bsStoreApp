@@ -14,6 +14,7 @@ using Entities.LinkModels;
 
 namespace Presentation.Controllers
 {
+    [ApiVersion("1.0")]
     [ServiceFilter(typeof(LogFilterAttribute))]
     [Route("api/[controller]")]
     [ApiController]
