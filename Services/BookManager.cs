@@ -91,5 +91,11 @@ namespace Services
                 throw new BookNotFoundException(id);
             return book;
         }
+
+        public Task<List<Book>> GetAllBooksAsync(bool trackChanges)
+        {
+            var books = _repositoryManager.Book.GetAllBooksAsync(trackChanges);
+            return books;
+        }
     }
 }
