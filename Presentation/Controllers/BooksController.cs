@@ -20,6 +20,7 @@ namespace Presentation.Controllers
     [ServiceFilter(typeof(LogFilterAttribute))]
     [Route("api/books")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "v1")]
     //[ResponseCache(CacheProfileName = "5mins")]
     //[HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 80)]
     public class BooksController : ControllerBase
